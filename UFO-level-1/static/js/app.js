@@ -13,21 +13,24 @@ data.forEach((element) =>{
 
 
 var botton = d3.select("#filter-btn");
-var input = d3.select("#datetime");
+var inputField = d3.select("#datetime");
 
 botton.on("click", function(){
-    console.log("The botton has clicked")
+    // clear out the prior outputs
+    tbody.html("");
+    console.log("The botton has clicked");
     // stop the page from refresh
     d3.event.preventDefault();
-    var inputData = input.property("value");
-    console.log(inputDate);
-
+    var inputData = inputField.property("value");
+    console.log(inputData);
+    // Display data on html
     var outputData = data.filter((date) => date.datetime === inputData);
     outputData.forEach((output)=>{
         row = tbody.append("tr");
         Object.entries(output).forEach(([key,value])=>{
             cell = row.append("td");
             cell.text(value)
-        });  
+        });
+    console.log(outputData);
     });
 });
